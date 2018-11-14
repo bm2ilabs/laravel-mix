@@ -1,4 +1,3 @@
-let paths = new (require('./Paths'))();
 let webpackMerge = require('webpack-merge');
 
 module.exports = function() {
@@ -154,12 +153,11 @@ module.exports = function() {
                     cacheDirectory: true,
                     presets: [
                         [
-                            'env',
+                            '@babel/preset-env',
                             {
                                 modules: false,
                                 targets: {
-                                    browsers: ['> 2%'],
-                                    uglify: true
+                                    browsers: ['> 2%']
                                 }
                             }
                         ]
@@ -167,12 +165,10 @@ module.exports = function() {
                     plugins: [
                         'transform-object-rest-spread',
                         [
-                            'transform-runtime',
-                            {
-                                polyfill: false,
-                                helpers: false
-                            }
-                        ]
+                            '@babel/plugin-transform-runtime'
+                        ],
+                        '@babel/plugin-syntax-dynamic-import'
+
                     ]
                 },
                 options
